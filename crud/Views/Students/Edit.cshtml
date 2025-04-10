@@ -1,0 +1,41 @@
+﻿@model crud.Models.Entities.Student
+
+<h1>Edit Students</h1>
+@if (Model is null){
+    <p>No Record Found</p>
+}
+else 
+{
+
+<form method="post">
+
+    <div class="mt-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="Name" />
+    </div>
+    <div class="mt-3">
+        <label class="form-label">Phone</label>
+        <input type="text" class="form-control" asp-for="Phone" />
+    </div>
+    <div class="mt-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" asp-for="Email" />
+    </div>
+
+    <div class="mt-3">
+        <input type="checkbox" class="form-check-input" id="IsActive" asp-for="IsActive" />
+        <label class="form-label" for="IsActive">IsActive</label>
+    </div>
+
+    @*   @if (Model.Id > 0)
+    { *@
+    @*         <button type="submit" class="btn btn-primary">Update</button>
+ *@@*     }
+    else
+    { *@
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a>|</a>
+    <button type="submit" class="btn btn-danger" asp-controller="Students" asp-action="Delete">Delete</button>
+    @*   } *@
+</form>
+}
