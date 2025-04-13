@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using crud.Data;
 
@@ -11,9 +12,11 @@ using crud.Data;
 namespace crud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250411082909_ApplicationdbContext")]
+    partial class ApplicationdbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,12 +57,7 @@ namespace crud.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
                     b.HasKey("ApplicationStudentId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("ApplicationStudents");
                 });
@@ -87,22 +85,6 @@ namespace crud.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("crud.Models.Entities.ApplicationStudent", b =>
-                {
-                    b.HasOne("crud.Models.Entities.Student", "Student")
-                        .WithMany("ApplicationStudents")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("crud.Models.Entities.Student", b =>
-                {
-                    b.Navigation("ApplicationStudents");
                 });
 #pragma warning restore 612, 618
         }

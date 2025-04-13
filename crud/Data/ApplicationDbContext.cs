@@ -11,5 +11,6 @@ namespace crud.Data
         }
 
         public DbSet<Student> Students { get; set; }
+        public DbSet<ApplicationStudent> ApplicationStudents { get; set; }
     }
 }
